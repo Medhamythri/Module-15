@@ -22,12 +22,44 @@ To write a Python program to build and evaluate the given Expression tree.
 ## PROGRAM:
 
 ```
-WRITE YOUR CODE
+
+
+from binarytree import Node,build
+class Node:
+    def _init_(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def isLeaf(node):
+    return node.left is None and node.right is None
+ 
+def process(op, x, y):
+    if op == '+':
+        return x + y
+    if op == '-':
+        return x - y
+    if op == '*':
+        return x * y
+    if op == '/':
+        return x / y
+ 
+def evaluate(root):
+    if root is None:
+        return 0
+    if isLeaf(root):
+        return float(root.val)
+    x=evaluate(root.left)
+    y=evaluate(root.right)
+    return process(root.val,x,y)
+root=build(['+','*',3,4,8])
+print("The value of the expression tree is",evaluate(root))
 ```
 
 ## OUTPUT:
-```
-```
+<img width="1040" height="147" alt="image" src="https://github.com/user-attachments/assets/fcd83993-0f58-4ec7-8289-f22fa21af6cc" />
+
 
 ## RESULT:
 
+Thus the Python program to build and evaluate the given Expression tree was successfully executed.
